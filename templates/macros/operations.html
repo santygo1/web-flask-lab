@@ -1,0 +1,7 @@
+{% macro operations_select( selected) %}
+    <select name="operation">
+        <option value="sum" {% if selected == "sum" %} selected {% endif %}>+</option>
+        <option value="minus" {% if selected == "minus" %}selected {% endif %}>-</option>
+        <option value="mult" {% if selected == "mult" %}selected {% endif %}>*</option>
+    </select>
+{% endmacro %}

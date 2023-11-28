@@ -2,6 +2,7 @@
 <html lang="en">
 
 {% from '/macros/matrix.html' import  create_matrix %}
+{% from '/macros/operations.html' import operations_select %}
 <head>
     <meta charset="UTF-8">
     <title>Операции над матрицами</title>
@@ -10,35 +11,40 @@
 </head>
 <body>
 
+<div class="main">
 
-<form class="main" method="GET" action="{{ url_for('matrix') }}">
-
-    <div>
+    <form method="GET" action="{{ url_for('matrix') }}">
         <label>Ранг матриц
-            <input class="rank-input" type="number" name="rank" value="{{ rank }}" min="2" max="6" required>
+            <input class="rank-input" type="number" name="rank" value="{{ rank }}" min="2" max="6" required></label>
         </label>
         <input type="submit" value="Показать">
-    </div>
+    </form>
 
-    <div class="matrix-expression">
-        {{ create_matrix('a', matrix_a, true) }}
+    <form id="expression-form" method="POST" action="{{ url_for('matrix') }}">
+        <div class="matrix-expression">
+            {{ create_matrix('a', matrix_a, true) }}
 
-        <select name="operation">
-            <option value="sum" selected>+</option>
-            <option value="minus">-</option>
-            <option value="mult">*</option>
-        </select>
-        {{ create_matrix('b', matrix_b, true) }}
+            {{ operations_select(operation) }}
 
-        <div>=</div>
-        {{ create_matrix('result', result, false) }}
-    </div>
+            {{ create_matrix('b', matrix_b, true) }}
+
+            {% if result != None %}
+                <div>=</div>
+                {{ create_matrix('result', result, false) }}
+            {% endif %}
+        </div>
+    </form>
 
     <div class="action-buttons">
-        <input name="action" type="submit" value="Посчитать">
-        <input type="reset" value="Очистить">
-    </div>
-</form>
+        <input form="expression-form" type="submit" value="Посчитать">
 
+        <!-- не работает при пост запросе, так как сохраняются значения,
+        сбрасывает только пользовательский ввод без отправки запроса -->
+        <input form="expression-form" type="reset" value="Очистить изменения">
+
+        <!-- сбрасывает все в первоначальное значение -->
+        <a href="{{ url_for('matrix') }}">Сбросить все</a>
+    </div>
+</div>
 </body>
 </html>
