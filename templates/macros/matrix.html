@@ -1,0 +1,18 @@
+{% macro create_matrix(name, matrix, editable) %}
+    <div class="matrix">
+        {% for row in matrix %}
+            {% set i = loop.index0 %}
+            <div class="matrix__row">
+                {% for col in row %}
+                    {% set j = loop.index0 %}
+                    {% if editable %}
+                        <input type="number" name="{{ name }}[{{ i }}][{{ j }}]" class="matrix__col matrix-cell" value="{{ col if col != None else "" }}"
+                               min="-99" max="99" required />
+                    {% else %}
+                        <div class="matrix__col matrix-cell">{{ col if col != None else "" }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+{% endmacro %}

@@ -1,0 +1,38 @@
+.matrix{
+    display: inline-flex;
+    flex-direction: column;
+    padding: 5px;
+    border: black 1px solid;
+    width: 200px;
+    height: 200px;
+    gap: 10px;
+}
+
+.matrix__row{
+    display: flex;
+    flex: 1;
+    gap: 10px;
+    flex-direction: row;
+}
+
+.matrix__row .matrix__col{
+    display: flex;
+}
+
+.matrix-cell{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input.matrix-cell{
+    width: 0;
+    text-align: center;
+}
+
+input.matrix-cell::-webkit-outer-spin-button,
+input.matrix-cell::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% from '/macros/matrix.html' import  create_matrix %}
+<head>
+    <meta charset="UTF-8">
+    <title>Операции над матрицами</title>
+    <link rel="stylesheet" href="/static/css/matrix.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body>
+
+
+<form class="main" method="GET" action="{{ url_for('matrix') }}">
+
+    <div>
+        <label>Ранг матриц
+            <input class="rank-input" type="number" name="rank" value="{{ rank }}" min="2" max="6" required>
+        </label>
+        <input type="submit" value="Показать">
+    </div>
+
+    <div class="matrix-expression">
+        {{ create_matrix('a', matrix_a, true) }}
+
+        <select name="operation">
+            <option value="sum" selected>+</option>
+            <option value="minus">-</option>
+            <option value="mult">*</option>
+        </select>
+        {{ create_matrix('b', matrix_b, true) }}
+
+        <div>=</div>
+        {{ create_matrix('result', result, false) }}
+    </div>
+
+    <div class="action-buttons">
+        <input name="action" type="submit" value="Посчитать">
+        <input type="reset" value="Очистить">
+    </div>
+</form>
+
+</body>
+</html>

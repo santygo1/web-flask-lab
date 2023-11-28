@@ -1,0 +1,14 @@
+.matrix-expression{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.main{
+    display: inline-flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+
+}
