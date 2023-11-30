@@ -1,3 +1,12 @@
+def generate_empty_matrix(matrix_rank):
+    """
+    Генерирует матрицу ранга matrix_rank заполненную None
+    :param matrix_rank: ранг матрицы
+    :return: Пустая матрица ранга matrix_rank
+    """
+    return [[0 for _ in range(0, matrix_rank)] for _ in range(0, matrix_rank)]
+
+
 def sum(a, b):
     result = []
     for i in range(len(a)):
